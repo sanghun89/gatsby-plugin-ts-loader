@@ -1,8 +1,16 @@
+// Tell webpack it can resolve this file types
 exports.resolvableExtensions = () => [".ts", ".tsx", ".js", ".jsx"];
 
 exports.onCreateWebpackConfig = (
-  { stage, getConfig, rules, loaders, plugins, actions },
-  { tslint }
+  {
+    stage,
+    getConfig,
+    rules,
+    loaders,
+    plugins,
+    actions /* destructured Object that gatsby provides  to plugins*/
+  },
+  { tslint /* destructured plugin options*/ }
 ) => {
   const config = {
     module: {
@@ -10,11 +18,13 @@ exports.onCreateWebpackConfig = (
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
+          // Feed the compiled ts files through babel
           use: [loaders.js(), require.resolve("ts-loader")]
         }
       ]
     }
   };
+  // If typescript is enabled add it to the rules
   if (tslint) {
     const tslintRules = {
       test: /\.tsx?$/,
@@ -29,5 +39,6 @@ exports.onCreateWebpackConfig = (
     };
     config.module.rules = [...config.module.rules, tslintRules];
   }
+  // Merge the typescript config into the default webpack config
   actions.setWebpackConfig(config);
 };
