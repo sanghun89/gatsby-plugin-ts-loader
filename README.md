@@ -10,12 +10,14 @@ Provides plug-n-play support for [Typescript](http://www.typescriptlang.org/) an
 
 The only other option for adding typescript to Gatsby at the time of writing is [gatsby-plugin-typescript](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-typescript), which does not use the typescript compiler but instead a babel plugin. Therefore it does not do type checking and you are required to install a separate plugin to check types. In addition, you are required to install a third plugin for linting. I would also argue that most react developers prefer ts-loader over the babel plugin, which could just be my perspective, but the plugins listed above were the first time I even came someone using the babel plugin.
 
+Also, it is worth noting that the compiled typescript is fed back through babel, this means that anything you have setup through babel should still work.
+
 I wrote this to reduce the required number of plugins to get up and running with typescript and to also do typescript in a way more react developers are accustomed to, using the same tools most frontend developers already use. I also wanted to make it very easy for new developers to get up and running by simplifying the process and providing better documentation than other options.
 
 ## How to use
 
 1. Install plugin via your prefered package manager
-1. Include the plugin in your `gatsby-config.js` file, optionally enabling `tslint` (defaults to: `false`)
+1. Include the plugin in your `gatsby-config.js` file, optionally enabling `tslint` (defaults to: `false`). It is important to include this plugin _AFTER_ any other plugins that modify the babel config, as this plugin will feed the compiled typescript back through babel.
 1. Add a `tsconfig.json` file to the root of your site (example below)
 1. If using `tslint`, add a `tslint.json` file to the root of your project (example below)
 1. Optionally install [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) definitions for any of your dependencies that require it.
