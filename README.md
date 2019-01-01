@@ -21,6 +21,7 @@ I wrote this to reduce the required number of plugins to get up and running with
 1. Optionally install [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) definitions for any of your dependencies that require it.
 1. You are now free to write Typescript inside any file with a `.ts` or `.tsx` file. To use the jsx syntax, your file must have the `.tsx` extension.
 1. If you have an existing project written in javascript you are able to incrementally convert the project to typescript as needed. See the [conversion guide](https://github.com/Microsoft/TypeScript-React-Conversion-Guide) for help. Your `.js` files will continue to work. Note that sometimes gatsby crashes when changing file names, simply restart the dev-server and you will be good to go.
+1. tslint will currently only warn you in development mode but will error out when you build the project for release. This is to make it less intrusive during development, while also preventing you from releasing code that does not meet your style guide. If you need an escape hatch for a specific part of your codebase, tslint provides [disable comments](https://palantir.github.io/tslint/usage/rule-flags/) to have it ignore certain lines. This forces you to be explicit about breaking the rules.
 
 ### Example gatsby-config.js
 
@@ -72,8 +73,10 @@ module.exports = {
 These are some of my ideas for things I would like to add to this in the future. These shouldn't break any of the existing functionality. I will add a feature when I need it myself or if someone ask (nicely) for it or better yet, opens up a PR for it. If you have any ideas for what you would like to add, please feel free to open an issue.
 
 - Optionally use [fork-ts-checker-webpack-plugin](https://github.com/Realytics/fork-ts-checker-webpack-plugin) to check types in a separate process instead of in the main webpack thread.
+- Optionally have tslint only warn on production builds.
 
 ## Contributing
 
 - If you see something listed under Possible Features, open an issue if one is not already open and assign it to yourself. I will check in periodically to see if you are still working on it if it has been open more than a few days. If it seems abandoned I will close it so someone else can take it on if they wish.
 - If you find a bug or would like a new feature, open an issue and I will try to be as responsive as possible.
+- If you have a question, please feel free to open up an issue and I will answer at my earliest convenience.
