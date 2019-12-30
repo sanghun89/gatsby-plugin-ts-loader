@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-ts-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Adds Typescript and tslint support to gatsby.",
   "main": "index.js",
   "repository": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/AdamLeBlanc/gatsby-plugin-ts-loader#readme",
   "peerDependencies": {
-    "gatsby": "~2.0.79"
+    "gatsby": "~2.18.17"
   },
   "dependencies": {
     "ts-loader": "^6.2.1",
