@@ -3,14 +3,9 @@ exports.resolvableExtensions = () => [".ts", ".tsx", ".js", ".jsx"];
 
 exports.onCreateWebpackConfig = (
   {
-    stage,
-    getConfig,
-    rules,
     loaders,
-    plugins,
     actions /* destructured Object that gatsby provides  to plugins*/
-  },
-  { tslint /* destructured plugin options*/ }
+  }
 ) => {
   const config = {
     module: {
@@ -24,21 +19,6 @@ exports.onCreateWebpackConfig = (
       ]
     }
   };
-  // If typescript is enabled add it to the rules
-  if (tslint) {
-    const tslintRules = {
-      test: /\.tsx?$/,
-      enforce: "pre",
-      exclude: /(node_modules|cache|public)/,
-      use: [
-        {
-          loader: require.resolve("tslint-loader"),
-          options: { emitErrors: stage === "build-javascript" }
-        }
-      ]
-    };
-    config.module.rules = [...config.module.rules, tslintRules];
-  }
   // Merge the typescript config into the default webpack config
   actions.setWebpackConfig(config);
 };
