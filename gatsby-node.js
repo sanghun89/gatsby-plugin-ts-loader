@@ -14,7 +14,15 @@ exports.onCreateWebpackConfig = (
           test: /\.tsx?$/,
           exclude: /node_modules/,
           // Feed the compiled ts files through babel
-          use: [loaders.js(), require.resolve("ts-loader")]
+          use: [loaders.js(), {
+            loader: 'ts-loader',
+            options: {
+              compilerOptions: {
+                sourceMap: process.env.NODE_ENV !== 'production',
+                noEmit: false
+              }
+            }
+          }],
         }
       ]
     }
